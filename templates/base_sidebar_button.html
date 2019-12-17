@@ -1,0 +1,10 @@
+<li class="nav-item {{ sidebar_button_status }}">
+    <a href="{{ model_link }}">
+        <i class="la la-dashboard"></i>
+        <p>{{ button_name }}</p>
+        {% if badge_info_num %}
+            <span class="badge badge-count">{{ badge_info_num }}</span>
+        {% endif %}
+    </a>
+
+</li>

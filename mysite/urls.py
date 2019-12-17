@@ -19,7 +19,8 @@ from django.conf.urls import url
 from . import view
 
 urlpatterns = [
-    url(r'^$',view.index),
+    path('',view.index,name='index'),
+    # path('index.html/',view.index),
     path('polls/',include('polls.urls')),
     path('admin/', admin.site.urls),
 ]
