@@ -17,24 +17,55 @@
                             <thead>
                             <tr>
                                 {% for k,v in question_attr.items %}
-                                    <th scope="col"> {{v}}</th>
+                                    <th scope="col"> {{ v }}</th>
                                 {% endfor %}
-
 
                             </tr>
                             </thead>
                             <tbody>
 
-                            {% for question in question_list %}
+                            {% for question in questions %}
                                 <tr>
                                     <th>{{ question.id }}</th>
                                     <th>{{ question.question_text }}</th>
                                     <th>{{ question.pub_date }}</th>
                                 </tr>
                             {% endfor %}
-
                             </tbody>
                         </table>
+                        <nav aria-label="Page navigation example">
+                            <ul class="pagination">
+                                <li class="page-item">
+                                    <a class="page-link" href="?page=1" aria-label="First">
+                                        <span aria-hidden="true">First</span>
+                                    </a>
+                                </li>
+                                {% if questions.has_previous %}
+                                    <li class="page-item"><a href="?page={{ questions.previous_page_number }}"
+                                                             class="page-link">&laquo;</a></li>
+                                {% endif %}
+                                <li class="page-item"><a class="page-link" href="#">..</a></li>
+                                <li class="page-item"><a class="page-link"
+                                                         href="?page={{ questions.number }}">{{ questions.number }}</a>
+                                </li>
+                                <li class="page-item"><a class="page-link" href="#">...</a></li>
+                                {% if questions.has_next %}
+                                    <li class="page-item">
+                                        <a class="page-link" href="?page={{ questions.next_page_number }}"
+                                           aria-label="Next">
+                                            <span aria-hidden="true">&raquo;</span>
+                                        </a>
+                                    </li>
+                                {% endif %}
+                                <li class="page-item">
+                                    <a class="page-link" href="?page={{ questions.paginator.num_pages }}"
+                                       aria-label="First">
+                                        <span aria-hidden="true">Last</span>
+                                    </a>
+                                </li>
+
+                            </ul>
+                        </nav>
                     </div>
                 </div>
             </div>

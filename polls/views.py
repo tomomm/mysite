@@ -11,6 +11,7 @@ from .models import Question,Choice
 
 class IndexView(generic.ListView):
     template_name = 'polls/index.html' # default template: <app_name>/<mode_name>_list.html
+    model = Question
     context_object_name = 'latest_question_list'
 
     def get_queryset(self):

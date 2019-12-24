@@ -1,6 +1,7 @@
 from django.http import HttpResponse
 from django.shortcuts import render,get_object_or_404
 from django.template import Template
+from django.core.paginator import Paginator
 from polls.models import Choice,Question
 from django.apps import apps
 
@@ -19,9 +20,11 @@ def index(request):
 def tables(request):
     question_list = Question.objects.all()
     question_attr = get_model_field('polls','Question')
-    print(question_attr)
-    print(question_list)
-    context = {'question_list':question_list,'question_attr':question_attr}
+    paginator = Paginator(question_list,2)
+
+    page = request.GET.get('page')
+    questions = paginator.get_page(page)
+    context = {'questions':questions,'question_attr':question_attr}
     return render(request,'tables.html',context)
 
 
